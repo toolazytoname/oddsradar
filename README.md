@@ -10,17 +10,15 @@ Watch the same event on Polymarket, Kalshi, and Hyperliquid outcome markets. Whe
 
 ## Status
 
-**v0.1 runtime.** One-shot compare of a hand-maintained market map + fixture quotes. Implied probability is integer millionths.
+**v0.1 runtime (Rust 1.85).** One-shot compare of a hand-maintained market map + fixture quotes. Implied probability is integer millionths.
 
 ```bash
 cd oddsradar
-PYTHONPATH=. python3 -m oddsradar doctor --config fixtures/config.ok.json
-PYTHONPATH=. python3 -m oddsradar compare --config fixtures/config.ok.json \
+cargo test
+cargo run -- doctor --config fixtures/config.ok.json
+cargo run -- compare --config fixtures/config.ok.json \
   --map fixtures/markets.csv --quotes fixtures/quotes_wide.json
-PYTHONPATH=. python3 -m unittest discover -s tests -v
 ```
-
-Alert when `max(yes) - min(yes)` across venues for the same `event_id` exceeds `threshold_millionths` (default 5%).
 
 ## What we will not do
 
