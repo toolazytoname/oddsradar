@@ -123,6 +123,17 @@ pub fn compare_live(map_path: &Path, threshold: i64) -> Result<Vec<CompareRow>, 
     for id in ids {
         let qs = &by_event[&id];
         if qs.len() < 2 {
+            for q in qs {
+                let mut venues = std::collections::BTreeMap::new();
+                venues.insert(q.venue.clone(), q.yes);
+                rows.push(CompareRow {
+                    kind: "quote".into(),
+                    event_id: q.event_id.clone(),
+                    spread_millionths: 0,
+                    threshold_millionths: threshold,
+                    venues,
+                });
+            }
             continue;
         }
         rows.push(compare_event(qs, threshold)?);
