@@ -15,9 +15,11 @@ Watch the same event on Polymarket, Kalshi, and Hyperliquid outcome markets. Whe
 ```bash
 cd oddsradar
 cargo test
-cargo run -- doctor --config fixtures/config.ok.json
 cargo run -- compare --config fixtures/config.ok.json \
   --map fixtures/markets.csv --quotes fixtures/quotes_wide.json
+# 真实行情：map 里填 Polymarket id / Kalshi ticker
+cargo run -- compare --config fixtures/config.ok.json \
+  --map fixtures/markets.live.example.csv --live
 ```
 
 ## What we will not do

@@ -25,7 +25,10 @@ enum Cmd {
         #[arg(long)]
         map: PathBuf,
         #[arg(long)]
-        quotes: PathBuf,
+        quotes: Option<PathBuf>,
+        /// Pull Polymarket + Kalshi public APIs using the map (no quotes file).
+        #[arg(long)]
+        live: bool,
         #[arg(long)]
         threshold: Option<i64>,
         #[arg(long)]
@@ -67,6 +70,7 @@ fn main() -> ExitCode {
             config,
             map,
             quotes,
+            live,
             threshold,
             notify_file,
         } => {
@@ -79,13 +83,33 @@ fn main() -> ExitCode {
                     .and_then(|x| x.as_i64())
                     .unwrap_or(50_000)
             });
-            let rows = match compare_files(&map, &quotes, th) {
-                Ok(r) => r,
-                Err(e) => {
-                    eprintln!("{e}");
-                    return ExitCode::from(1);
+            let rows = if live {
+                match oddsradar::live::compare_live(&map, th) {
+                    Ok(r) => r,
+                    Err(e) => {
+                        eprintln!("{e}");
+                        return ExitCode::from(1);
+                    }
+                }
+            } else {
+                let q = match quotes {
+                    Some(p) => p,
+                    None => {
+                        eprintln!("compare: --quotes FILE or --live");
+                        return ExitCode::from(2);
+                    }
+                };
+                match compare_files(&map, &q, th) {
+                    Ok(r) => r,
+                    Err(e) => {
+                        eprintln!("{e}");
+                        return ExitCode::from(1);
+                    }
                 }
             };
+            if rows.is_empty() {
+                eprintln!("compare: no event had two live quotes (need ≥2 venues per event_id)");
+            }
             for r in &rows {
                 println!("{}", serde_json::to_string(r).unwrap());
             }

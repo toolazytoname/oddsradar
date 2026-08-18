@@ -1,5 +1,6 @@
 //! Read-only cross-venue prediction-market spread radar.
 
+pub mod live;
 pub mod map;
 pub mod secrets;
 pub mod spread;
