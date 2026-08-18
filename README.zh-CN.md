@@ -10,7 +10,7 @@
 
 ## 状态
 
-空仓库 + 规格。还没有可运行程序。
+**v0.1 可运行。** `PYTHONPATH=. python3 -m oddsradar compare --config fixtures/config.ok.json --map fixtures/markets.csv --quotes fixtures/quotes_wide.json`
 
 ## 明确不做
 

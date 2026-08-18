@@ -1,0 +1,5 @@
+{
+  "map": "fixtures/markets.csv",
+  "threshold_millionths": 50000,
+  "notify": {"kind": "file", "path": "alerts.jsonl"}
+}

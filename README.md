@@ -10,13 +10,17 @@ Watch the same event on Polymarket, Kalshi, and Hyperliquid outcome markets. Whe
 
 ## Status
 
-Scaffold. Spec is in `docs/`. No runtime yet.
+**v0.1 runtime.** One-shot compare of a hand-maintained market map + fixture quotes. Implied probability is integer millionths.
 
-## v0.1 (target)
+```bash
+cd oddsradar
+PYTHONPATH=. python3 -m oddsradar doctor --config fixtures/config.ok.json
+PYTHONPATH=. python3 -m oddsradar compare --config fixtures/config.ok.json \
+  --map fixtures/markets.csv --quotes fixtures/quotes_wide.json
+PYTHONPATH=. python3 -m unittest discover -s tests -v
+```
 
-- 10–20 high-liquidity events you actually care about
-- One table or one Telegram bot
-- Alert when spread exceeds a configured percent
+Alert when `max(yes) - min(yes)` across venues for the same `event_id` exceeds `threshold_millionths` (default 5%).
 
 ## What we will not do
 

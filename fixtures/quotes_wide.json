@@ -1,0 +1,9 @@
+{
+  "quotes": [
+    {"venue": "polymarket", "market_id": "pm-btc-100k", "yes": "0.62"},
+    {"venue": "kalshi", "market_id": "kx-btc-100k", "yes": "0.50"},
+    {"venue": "hyperliquid", "market_id": "hl-btc-100k", "yes": "0.51"},
+    {"venue": "polymarket", "market_id": "pm-fed", "yes": "0.40"},
+    {"venue": "kalshi", "market_id": "kx-fed", "yes": "0.41"}
+  ]
+}

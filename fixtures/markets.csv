@@ -1,0 +1,6 @@
+event_id,venue,market_id
+btc-100k,polymarket,pm-btc-100k
+btc-100k,kalshi,kx-btc-100k
+btc-100k,hyperliquid,hl-btc-100k
+fed-cut,polymarket,pm-fed
+fed-cut,kalshi,kx-fed
