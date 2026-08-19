@@ -1,5 +1,24 @@
 # 学习模块 · oddsradar
 
+![封面](assets/cover.jpg)
+
+[封面动画 6s](assets/cover.mp4)
+
+## 架构
+
+![架构](assets/architecture.svg)
+
+```mermaid
+flowchart LR
+  M[markets.csv 映射] --> P[parse_prob]
+  Q[quotes fixture] --> P
+  L[Polymarket / Kalshi] --> P
+  P --> C[compare_event]
+  C -->|两所且超阈| S[spread]
+  C -->|两所未超阈| O[ok]
+  C -->|一所| U[quote]
+```
+
 先跑：
 
 ```bash
