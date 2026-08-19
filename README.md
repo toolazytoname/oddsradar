@@ -1,6 +1,6 @@
 # oddsradar
 
-**English** · [中文](README.zh-CN.md) — plan: [docs/PROJECT-PLAN.md](docs/PROJECT-PLAN.md)
+**English** · [中文](README.zh-CN.md) — plan: [docs/PROJECT-PLAN.md](docs/PROJECT-PLAN.md) · 学习: [learn/](learn/)
 
 **Read-only** cross-venue prediction-market spread radar.
 
